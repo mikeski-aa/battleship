@@ -13,14 +13,14 @@ test("Ship hit count", () => {
   expect(testShip.hitCount).toBe(0);
 });
 
-// Change ship hit count
+// Change ship hit count - default is zero
 test("Ship hit count", () => {
   const testShip = newShip(5);
-  testShip.hitCount = 5;
-  expect(testShip.hitCount).toBe(5);
+  testShip.hitCount = 4;
+  expect(testShip.hitCount).toBe(4);
 });
 
-// Get sunk status
+// Get sunk status - default status is false
 test("Sunk status false", () => {
   const testShip = newShip(5);
   expect(testShip.isSunk(0)).toBeFalsy();
@@ -30,8 +30,6 @@ test("Sunk status false", () => {
 test("Sunk status true", () => {
   const testShip = newShip(5);
   testShip.hitCount = 6;
-  console.log(testShip.length);
-  console.log(testShip.hitCount);
   expect(testShip.isSunk(testShip.hitCount)).toBeTruthy();
 });
 
