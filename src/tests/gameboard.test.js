@@ -155,12 +155,37 @@ test('Revalidate coord status', () => {
 // receive attack on empty coords should mark map with M
 // target that is hit needs to be marked with X on the map, and obj needs hit + 1
 // after that need to run a check if the ship has been sunk!
-test('asdasdasdasd', () => {
+test('Check for marking misses', () => {
     const testBoard = gameBoard();
     testBoard.createBoard();
-    expect(testFn()).toBe(1);
-})
+    expect(testBoard.receiveAttack(2, 0)[2][0]).toMatch('M');
+});
 
+// miss already recorder -> should throw an error!
+test('Check for existing hit being recorded misses', () => {
+    const testBoard = gameBoard();
+    testBoard.createBoard();
+    testBoard.board[2][0] = 'M';
+    expect( () => testBoard.receiveAttack(2, 0)).toThrow(Error);
+});
+
+// ship detected marking
+test('Ship hit', () => {
+    const testBoard = gameBoard();
+    testBoard.createBoard();
+    testBoard.placeShip(5, 0, 0, 0);
+    expect(testBoard.receiveAttack(0, 2)[0][2]).toMatch('X');
+});
+
+// ship sunk, x displayed, message displayed...
+test('Ship sunk', () => {
+    const testBoard = gameBoard();
+    testBoard.createBoard();
+    testBoard.placeShip(1, 0, 0, 0);
+    expect(testBoard.receiveAttack(0, 0)[0][0]).toMatch('X');
+});
+
+// ship has been sunk
 
 // testing how things are displayed
 // test('Display test', () => {
