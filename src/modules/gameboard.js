@@ -6,6 +6,7 @@ import { newShip } from "./ship";
 const gameBoard = () => {
   let board = [[], [], [], [], [], [], [], [], [], []];
 
+// should only be ran once to populate the board
   const createBoard = () => {
     for (let i = 0; i < 10; i++) {
       for (let j = 0; j < 10; j++) {

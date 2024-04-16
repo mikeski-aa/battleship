@@ -2,8 +2,9 @@ import { gameBoard } from "./gameboard";
 import { newShip } from "./ship";
 // new players will be created here
 
-const newPlayer = (inputPlayerName) => {
+const newPlayer = (inputPlayerName, playerType) => {
     const name = inputPlayerName;
+    const type = playerType;
     let playerBoard = gameBoard();
     let carrier = newShip(5);
     let battleship = newShip(4);
@@ -12,6 +13,7 @@ const newPlayer = (inputPlayerName) => {
     let destroyer = newShip(2);
 
     return {
+        type,
         name,
         playerBoard,
         carrier,
