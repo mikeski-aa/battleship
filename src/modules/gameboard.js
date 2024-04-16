@@ -60,9 +60,10 @@ const gameBoard = () => {
   };
 
   const revalidateCoordinateStatus = (proposedCoords) => {
+    console.log(proposedCoords);
     let isEmpty = true;
     for (let i = 0; i < proposedCoords.length; i++) {
-      if (proposedCoords[0] !== "empty") {
+      if (proposedCoords[i] !== "empty") {
         return (isEmpty = false);
       } else {
         isEmpty = true;
@@ -125,7 +126,7 @@ const gameBoard = () => {
         return board;
       }
     } else {
-      throw new Error("Error, invalid placement!");
+      return false
     }
   };
 
@@ -139,10 +140,10 @@ const gameBoard = () => {
       return board;
     } else if (coordStatus(yCoord, xCoord) == ("M")) {
       console.log("move invalid");
-      throw new Error("This coordinate is already occupied!");
+      return false;
     } else if (coordStatus(yCoord, xCoord) == ("X")) {
       console.log("move invalid");
-      throw new Error("This coordinate is already occupied!");
+      return false;
     } else {
       board[yCoord][xCoord].hitCount += 1;
 
@@ -157,6 +158,7 @@ const gameBoard = () => {
   };
 
   return {
+    compoundValidation,
     receiveAttack,
     revalidateCoordinateStatus,
     validateSpace,

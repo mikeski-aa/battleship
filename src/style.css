@@ -23,5 +23,5 @@ th {
 }
 
 [class*="targetHit"] {
-    background-color: green;
+    background-color: violet;
 }
