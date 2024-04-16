@@ -12,6 +12,8 @@ player1.playerBoard.placeShip(player1.battleship, 0, 0, 1);
 drawBoard(player1.playerBoard.board);
 player1.playerBoard.placeShip(player1.cruiser, 7, 2, 0);
 drawBoard(player1.playerBoard.board);
+player1.playerBoard.placeShip(player1.destroyer, 3, 8, 0);
+
 player1.playerBoard.receiveAttack(4, 3);
 drawBoard(player1.playerBoard.board);
 player1.playerBoard.receiveAttack(4, 5);

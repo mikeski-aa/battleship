@@ -26,7 +26,7 @@ const gameBoard = () => {
 
   // check if proposed length is within bounds
   const validateLength = (startCoord, length) => {
-    if (startCoord + length > 9) {
+    if (startCoord + length > 10) {
       return false;
     } else {
       return true;
