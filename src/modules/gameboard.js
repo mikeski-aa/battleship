@@ -60,7 +60,6 @@ const gameBoard = () => {
   };
 
   const revalidateCoordinateStatus = (proposedCoords) => {
-    console.log(proposedCoords);
     let isEmpty = true;
     for (let i = 0; i < proposedCoords.length; i++) {
       if (proposedCoords[i] !== "empty") {

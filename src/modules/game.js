@@ -1,21 +1,23 @@
-import "./style.css";
 import { gameBoard } from "./modules/gameboard";
 import { newPlayer, genXCoord, genYCoord, genDirection, insertCPUship } from "./modules/players";
 import { drawBoard } from "./modules/dom";
 
 
 // This is how the game will always start if the player wants to play CPU.
-let cpuPlayer = newPlayer('computer', 'CPU');
-cpuPlayer.playerBoard.createBoard();
+function initializeCPU(){
+    let cpuPlayer = newPlayer('computer', 'CPU');
+    cpuPlayer.playerBoard.createBoard();
+    
+    insertCPUship(cpuPlayer.carrier, cpuPlayer.playerBoard);
+    insertCPUship(cpuPlayer.battleship, cpuPlayer.playerBoard);
+    insertCPUship(cpuPlayer.submarine, cpuPlayer.playerBoard);
+    insertCPUship(cpuPlayer.cruiser, cpuPlayer.playerBoard);
+    insertCPUship(cpuPlayer.destroyer, cpuPlayer.playerBoard);
+    
+    
+    drawBoard(cpuPlayer.playerBoard.board, 2);
+}
 
-insertCPUship(cpuPlayer.carrier, cpuPlayer.playerBoard);
-insertCPUship(cpuPlayer.battleship, cpuPlayer.playerBoard);
-insertCPUship(cpuPlayer.submarine, cpuPlayer.playerBoard);
-insertCPUship(cpuPlayer.cruiser, cpuPlayer.playerBoard);
-insertCPUship(cpuPlayer.destroyer, cpuPlayer.playerBoard);
-
-
-drawBoard(cpuPlayer.playerBoard.board, 2);
 
 
 let player1 = newPlayer('Mike', 'player');
