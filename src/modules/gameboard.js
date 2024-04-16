@@ -106,9 +106,9 @@ const gameBoard = () => {
     }
   };
 
-  const placeShip = (shipSize, yCoord, xCoord, direction) => {
-    if (compoundValidation(shipSize, yCoord, xCoord, direction)) {
-      let ship = newShip(shipSize);
+  const placeShip = (ship, yCoord, xCoord, direction) => {
+    if (compoundValidation(ship.length, yCoord, xCoord, direction)) {
+      // let ship = newShip(shipSize);
       if (direction === 0) {
         for (let i = 0; i < ship.length; i++) {
           board[yCoord][xCoord + i] = ship;
@@ -144,7 +144,8 @@ const gameBoard = () => {
         board[yCoord][xCoord].hitCount += 1;
 
         if (board[yCoord][xCoord].isSunk(board[yCoord][xCoord].hitCount)) {
-            console.log('Ship has been sunk!');
+            console.log('Ship has been sunk! ' + board[yCoord][xCoord].length);
+            console.log(board[yCoord][xCoord].hitCount);
         }
 
         board[yCoord][xCoord] = 'X';

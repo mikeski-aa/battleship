@@ -13,3 +13,15 @@ th {
     width: 32px;
     height: 32px;
 }
+
+[class*="ship"] {
+    background-color: red;
+}
+
+[class*="miss"] {
+    background-color: blue;
+}
+
+[class*="targetHit"] {
+    background-color: green;
+}
