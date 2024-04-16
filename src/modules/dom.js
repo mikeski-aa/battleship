@@ -16,10 +16,10 @@ const domManipulation = () => {
   };
 };
 
-function drawBoard(currBoard) {
+function drawBoard(currBoard, playerNum) {
   for (let i = 0; i < 10; i++) {
     for (let j = 0; j < 10; j++) {
-      let cell = document.querySelector(`[data-x="${j}"][data-y="${i}"]`);
+      let cell = document.querySelector(`[class*="player${playerNum}"][data-x="${j}"][data-y="${i}"]`);
 
       if (currBoard[i][j] == "M") {
         cell.classList.add("miss");
