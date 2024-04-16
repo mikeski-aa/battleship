@@ -6,7 +6,7 @@ import { newShip } from "./ship";
 const gameBoard = () => {
   let board = [[], [], [], [], [], [], [], [], [], []];
 
-// should only be ran once to populate the board
+  // should only be ran once to populate the board
   const createBoard = () => {
     for (let i = 0; i < 10; i++) {
       for (let j = 0; j < 10; j++) {
@@ -135,25 +135,26 @@ const gameBoard = () => {
 
   const receiveAttack = (yCoord, xCoord) => {
     if (coordStatus(yCoord, xCoord) == "empty") {
-        board[yCoord][xCoord] = 'M';
-        return board;
-    } else if (coordStatus(yCoord, xCoord) == ("M" || 'X')) {
-        console.log('move invalid');
-        throw new Error('This coordinate is already occupied!')
+      board[yCoord][xCoord] = "M";
+      return board;
+    } else if (coordStatus(yCoord, xCoord) == ("M")) {
+      console.log("move invalid");
+      throw new Error("This coordinate is already occupied!");
+    } else if (coordStatus(yCoord, xCoord) == ("X")) {
+      console.log("move invalid");
+      throw new Error("This coordinate is already occupied!");
     } else {
-        board[yCoord][xCoord].hitCount += 1;
+      board[yCoord][xCoord].hitCount += 1;
 
-        if (board[yCoord][xCoord].isSunk(board[yCoord][xCoord].hitCount)) {
-            console.log('Ship has been sunk! ' + board[yCoord][xCoord].length);
-            console.log(board[yCoord][xCoord].hitCount);
-        }
+      if (board[yCoord][xCoord].isSunk(board[yCoord][xCoord].hitCount)) {
+        console.log("Ship has been sunk! " + board[yCoord][xCoord].length);
+        console.log(board[yCoord][xCoord].hitCount);
+      }
 
-        board[yCoord][xCoord] = 'X';
-        return board;
+      board[yCoord][xCoord] = "X";
+      return board;
     }
   };
-
-
 
   return {
     receiveAttack,
