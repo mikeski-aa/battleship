@@ -15,7 +15,7 @@ const domManipulation = () => {
     drawBoard,
   };
 };
-
+// draws player board on screen
 function drawBoard(currBoard, playerNum) {
   for (let i = 0; i < 10; i++) {
     for (let j = 0; j < 10; j++) {
@@ -34,4 +34,20 @@ function drawBoard(currBoard, playerNum) {
   }
 }
 
-export { drawBoard };
+function drawCPU(currBoard, playerNum) {
+  for (let i = 0; i < 10; i++) {
+    for (let j = 0; j < 10; j++) {
+      let cell = document.querySelector(`[class*="player${playerNum}"][data-x="${j}"][data-y="${i}"]`);
+
+      if (currBoard[i][j] == "M") {
+        cell.classList.add("miss");
+      } 
+      else if (currBoard[i][j] == ("X")) {
+        cell.classList.add("targetHit");
+      }
+      
+    }
+  }
+}
+
+export { drawBoard, drawCPU };
