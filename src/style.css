@@ -1,3 +1,15 @@
-table {
+table, tr, td, th{
     border: 1px solid black;
+    border-collapse: collapse;
+}
+
+th {
+    width: 32px;
+    background-color: beige;
+}
+
+
+[class*='cell'] {
+    width: 32px;
+    height: 32px;
 }
