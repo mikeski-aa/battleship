@@ -9,18 +9,28 @@ import {
 import { drawBoard, drawCPU } from "./dom";
 
 const startGame = () => {
+let cpuPlayer = newPlayer("computer", "CPU");
+let player1 = newPlayer("Mike", "player");
 let p1Count = 0;
 let p2Count = 0;
+
+  const gameStartCondition = () => {
+    initializePlayer();
+    initializeCPU();
+  }
     // testing for player 1
-  let player1 = newPlayer("Mike", "player");
-  player1.playerBoard.createBoard();
-  player1.playerBoard.placeShip(player1.carrier, 5, 4, 0);
-  player1.playerBoard.placeShip(player1.battleship, 0, 0, 1);
-  player1.playerBoard.placeShip(player1.cruiser, 7, 2, 0);
-  player1.playerBoard.placeShip(player1.destroyer, 3, 8, 0);
-  drawBoard(player1.playerBoard.board, 1);
+
+  const initializePlayer = () => {
+    player1.playerBoard.createBoard();
+    player1.playerBoard.placeShip(player1.carrier, 5, 4, 0);
+    player1.playerBoard.placeShip(player1.battleship, 0, 0, 1);
+    player1.playerBoard.placeShip(player1.cruiser, 7, 2, 0);
+    player1.playerBoard.placeShip(player1.destroyer, 3, 8, 0);
+    drawBoard(player1.playerBoard.board, 1);
+  }
+ 
   // This is how the game will always start if the player wants to play CPU.
-  let cpuPlayer = newPlayer("computer", "CPU");
+
 
   const initializeCPU = () => {
     cpuPlayer.playerBoard.createBoard();
@@ -74,6 +84,8 @@ let p2Count = 0;
   };
 
   return {
+    gameStartCondition,
+    initializePlayer,
     player2BoardClick,
     initializeCPU,
     cpuPlayer,
