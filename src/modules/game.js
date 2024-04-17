@@ -58,7 +58,14 @@ const startGame = () => {
         drawCPU(cpuPlayer.playerBoard.board, 2);
         p1Count += 1;
         console.log(p1Count);
-        return cpuTurn();
+
+        if (gameOver(cpuPlayer) == true) {
+          return alert(`Game over ${player1.name} wins`)
+        } else {
+          return cpuTurn();
+        };
+        
+        
       }
 
       return [xCoord, yCoord];
@@ -77,8 +84,17 @@ const startGame = () => {
         player1.playerBoard.receiveAttack(yCoord, xCoord);
         p2Count += 1;
         console.log(p2Count);
-        return drawBoard(player1.playerBoard.board, 1);
-      } else if (p2Count == 100);
+
+        if (gameOver(player1) == true) {
+          return alert(`Game over ${cpuPlayer.name} wins`)
+        } else {
+          return drawBoard(player1.playerBoard.board, 1);
+        };
+
+        
+      } else if (p2Count == 100) {
+       return alert('Max moves reached by CPU');
+      }
     }
   };
 
