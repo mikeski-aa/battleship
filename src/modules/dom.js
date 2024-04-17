@@ -50,4 +50,8 @@ function drawCPU(currBoard, playerNum) {
   }
 }
 
+function trackHP() {
+  
+}
+
 export { drawBoard, drawCPU };
