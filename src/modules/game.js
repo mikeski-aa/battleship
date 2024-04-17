@@ -113,6 +113,11 @@ const startGame = () => {
       }
   };
 
+  const resetGame = () => {
+    initializePlayer();
+    initializeCPU();
+  }
+
   return {
     gameOver,
     gameStartCondition,
