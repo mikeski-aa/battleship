@@ -25,3 +25,30 @@ th {
 [class*="targetHit"] {
     background-color: violet;
 }
+
+.boards {
+    display: flex;
+    gap: 2rem;
+}
+
+.health {
+    display: flex;
+}
+
+[class*="carrierHPbar"], 
+[class*="BSHPbar"], 
+[class*="cruiserHPbar"], 
+[class*="submarineHPbar"],
+[class*="destroyerHPbar"] {
+    border: 1px solid black;
+    width: 32px;
+    height: 32px;
+}
+
+[class="carrierHP"], 
+[class="BSHP"], 
+[class="cruiserHP"], 
+[class="submarineHP"], 
+[class="destroyerHP"] {
+    display: flex;
+}

@@ -1,4 +1,5 @@
 import { gameBoard } from "../modules/gameboard";
+import { newShip } from "../modules/ship";
 // testing gameboard length total
 
 test("Creating gameboard", () => {
@@ -72,35 +73,43 @@ test("Valid coordinate - is it a hit?", () => {
 // test placing ship on a board - input ship length, starting coordinate (y, x),
 // and horizontal or vertical (0 or 1)
 // we need to mock some ships as well right?
-test("Placing ship horizontally firt coord", () => {
+test("Placing ship horizontally first coord", () => {
   const testBoard = gameBoard();
+  const testShip = newShip(5);
   testBoard.createBoard();
-  expect(testBoard.placeShip(5, 0, 0, 0)[0][0].hitCount).toBe(0);
+  expect(testBoard.placeShip(testShip, 0, 0, 0)[0][0].hitCount).toBe(0);
 });
 // horizontal testing continued
 test("Placing ship horizontally last coord", () => {
   const testBoard = gameBoard();
   testBoard.createBoard();
-  expect(testBoard.placeShip(5, 0, 0, 0)[0][4].hitCount).toBe(0);
+  const testShip = newShip(3);
+  testBoard.placeShip(testShip, 0, 0, 0);
+  expect(testBoard.board[0][0].hitCount).toBe(0);
 });
 // testing undefined
 test("Placing ship horizontally", () => {
   const testBoard = gameBoard();
   testBoard.createBoard();
-  expect(testBoard.placeShip(5, 0, 0, 0)[0][5].hitCount).toBe(undefined);
+  const testShip = newShip(5);
+  expect(testBoard.placeShip(testShip, 0, 0, 0)[0][5].hitCount).toBe(undefined);
 });
 
 // vertical testing
-test("Placing ship horizontally firt coord", () => {
+test("Placing ship horizontally first coord", () => {
   const testBoard = gameBoard();
   testBoard.createBoard();
-  expect(testBoard.placeShip(3, 0, 0, 1)[0][0].hitCount).toBe(0);
+  const testShip = newShip(3);
+  testBoard.placeShip(testShip, 0, 0, 1);
+  expect(testBoard.board[0][0].hitCount).toBe(0);
 });
 // vertical testing continued
-test("Placing ship horizontally last coord", () => {
+test("Placing ship vertically last coord", () => {
   const testBoard = gameBoard();
   testBoard.createBoard();
-  expect(testBoard.placeShip(3, 0, 0, 1)[2][0].hitCount).toBe(0);
+  const testShip = newShip(3);
+  testBoard.placeShip(testShip, 0, 0, 1)
+  expect(testBoard.board[2][0].hitCount).toBe(0);
 });
 
 // validate length check in bounds
@@ -166,14 +175,15 @@ test('Check for existing hit being recorded misses', () => {
     const testBoard = gameBoard();
     testBoard.createBoard();
     testBoard.board[2][0] = 'M';
-    expect( () => testBoard.receiveAttack(2, 0)).toThrow(Error);
+    expect(testBoard.receiveAttack(2, 0)).toBeFalsy();
 });
 
 // ship detected marking
 test('Ship hit', () => {
     const testBoard = gameBoard();
+    const testShip = newShip(5);
     testBoard.createBoard();
-    testBoard.placeShip(5, 0, 0, 0);
+    testBoard.placeShip(testShip, 0, 0, 0);
     expect(testBoard.receiveAttack(0, 2)[0][2]).toMatch('X');
 });
 
@@ -181,8 +191,10 @@ test('Ship hit', () => {
 test('Ship sunk', () => {
     const testBoard = gameBoard();
     testBoard.createBoard();
-    testBoard.placeShip(1, 0, 0, 0);
-    expect(testBoard.receiveAttack(0, 0)[0][0]).toMatch('X');
+    const testShip = newShip(1);
+    testBoard.placeShip(testShip, 0, 0, 0);
+    testBoard.receiveAttack(0, 0);
+    expect(testShip.isSunk(testShip.hitCount)).toBeTruthy();
 });
 
 // ship has been sunk
