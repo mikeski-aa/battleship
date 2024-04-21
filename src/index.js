@@ -14,11 +14,12 @@ import { startGame, player2BoardClick, player2board } from "./modules/game";
 
 
 let test = startGame();
-test.player1.playerBoard.createBoard();
+
 // test.initializePlayer();
 // test.placeShip();
 
 let testBtn = document.querySelector('.placeP1Ship');
 testBtn.addEventListener('click', () => {
-    test.placeShip();
+    testBtn.style.display = "none";
+    test.gameStartCondition();
 })

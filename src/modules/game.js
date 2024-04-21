@@ -22,11 +22,13 @@ const startGame = () => {
 
   const initializePlayer = () => {
     player1.playerBoard.createBoard();
-    // player1.playerBoard.placeShip(player1.carrier, 5, 4, 0);
-    // player1.playerBoard.placeShip(player1.battleship, 0, 0, 1);
-    // player1.playerBoard.placeShip(player1.cruiser, 7, 2, 0);
-    // player1.playerBoard.placeShip(player1.destroyer, 3, 8, 0);
+    insertShipRandomCoords(player1.carrier, player1.playerBoard);
+    insertShipRandomCoords(player1.battleship, player1.playerBoard);
+    insertShipRandomCoords(player1.submarine, player1.playerBoard);
+    insertShipRandomCoords(player1.cruiser, player1.playerBoard);
+    insertShipRandomCoords(player1.destroyer, player1.playerBoard);
     drawBoard(player1.playerBoard.board, 1);
+
   };
 
   // This is how the game will always start if the player wants to play CPU.
@@ -116,12 +118,7 @@ const startGame = () => {
 
   //place ship by clicking on board
   const placeShip = () => {
-    insertShipRandomCoords(player1.carrier, player1.playerBoard);
-    insertShipRandomCoords(player1.battleship, player1.playerBoard);
-    insertShipRandomCoords(player1.submarine, player1.playerBoard);
-    insertShipRandomCoords(player1.cruiser, player1.playerBoard);
-    insertShipRandomCoords(player1.destroyer, player1.playerBoard);
-    drawBoard(player1.playerBoard.board, 1);
+   
   };
 
   return {
