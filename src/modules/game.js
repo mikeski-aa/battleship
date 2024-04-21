@@ -4,13 +4,13 @@ import {
   genXCoord,
   genYCoord,
   genDirection,
-  insertCPUship,
+  insertShipRandomCoords,
 } from "./players";
 import { drawBoard, drawCPU } from "./dom";
 
 const startGame = () => {
   let cpuPlayer = newPlayer("computer", "CPU");
-  let player1 = newPlayer("Mike", "player");
+  let player1 = newPlayer("Player1", "player");
   let p1Count = 0;
   let p2Count = 0;
 
@@ -22,10 +22,10 @@ const startGame = () => {
 
   const initializePlayer = () => {
     player1.playerBoard.createBoard();
-    player1.playerBoard.placeShip(player1.carrier, 5, 4, 0);
-    player1.playerBoard.placeShip(player1.battleship, 0, 0, 1);
-    player1.playerBoard.placeShip(player1.cruiser, 7, 2, 0);
-    player1.playerBoard.placeShip(player1.destroyer, 3, 8, 0);
+    // player1.playerBoard.placeShip(player1.carrier, 5, 4, 0);
+    // player1.playerBoard.placeShip(player1.battleship, 0, 0, 1);
+    // player1.playerBoard.placeShip(player1.cruiser, 7, 2, 0);
+    // player1.playerBoard.placeShip(player1.destroyer, 3, 8, 0);
     drawBoard(player1.playerBoard.board, 1);
   };
 
@@ -34,11 +34,11 @@ const startGame = () => {
   const initializeCPU = () => {
     cpuPlayer.playerBoard.createBoard();
 
-    insertCPUship(cpuPlayer.carrier, cpuPlayer.playerBoard);
-    insertCPUship(cpuPlayer.battleship, cpuPlayer.playerBoard);
-    insertCPUship(cpuPlayer.submarine, cpuPlayer.playerBoard);
-    insertCPUship(cpuPlayer.cruiser, cpuPlayer.playerBoard);
-    insertCPUship(cpuPlayer.destroyer, cpuPlayer.playerBoard);
+    insertShipRandomCoords(cpuPlayer.carrier, cpuPlayer.playerBoard);
+    insertShipRandomCoords(cpuPlayer.battleship, cpuPlayer.playerBoard);
+    insertShipRandomCoords(cpuPlayer.submarine, cpuPlayer.playerBoard);
+    insertShipRandomCoords(cpuPlayer.cruiser, cpuPlayer.playerBoard);
+    insertShipRandomCoords(cpuPlayer.destroyer, cpuPlayer.playerBoard);
 
     drawCPU(cpuPlayer.playerBoard.board, 2);
 
@@ -60,12 +60,10 @@ const startGame = () => {
         console.log(p1Count);
 
         if (gameOver(cpuPlayer) == true) {
-          return alert(`Game over ${player1.name} wins`)
+          return alert(`Game over ${player1.name} wins`);
         } else {
           return cpuTurn();
-        };
-        
-        
+        }
       }
 
       return [xCoord, yCoord];
@@ -86,14 +84,12 @@ const startGame = () => {
         console.log(p2Count);
 
         if (gameOver(player1) == true) {
-          return alert(`Game over ${cpuPlayer.name} wins`)
+          return alert(`Game over ${cpuPlayer.name} wins`);
         } else {
           return drawBoard(player1.playerBoard.board, 1);
-        };
-
-        
+        }
       } else if (p2Count == 100) {
-       return alert('Max moves reached by CPU');
+        return alert("Max moves reached by CPU");
       }
     }
   };
@@ -106,19 +102,30 @@ const startGame = () => {
       inputPlayer.submarine.hitCount +
       inputPlayer.destroyer.hitCount;
 
-      if (totalHP < 17) {
-        return false;
-      } else {
-        return true;
-      }
+    if (totalHP < 17) {
+      return false;
+    } else {
+      return true;
+    }
   };
 
   const resetGame = () => {
     initializePlayer();
     initializeCPU();
-  }
+  };
+
+  //place ship by clicking on board
+  const placeShip = () => {
+    insertShipRandomCoords(player1.carrier, player1.playerBoard);
+    insertShipRandomCoords(player1.battleship, player1.playerBoard);
+    insertShipRandomCoords(player1.submarine, player1.playerBoard);
+    insertShipRandomCoords(player1.cruiser, player1.playerBoard);
+    insertShipRandomCoords(player1.destroyer, player1.playerBoard);
+    drawBoard(player1.playerBoard.board, 1);
+  };
 
   return {
+    placeShip,
     gameOver,
     gameStartCondition,
     initializePlayer,

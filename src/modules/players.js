@@ -40,18 +40,18 @@ function genDirection() {
   return direction;
 }
 // compoundValidation = (shipSize, yCoord, xCoord, direction)
-function insertCPUship(ship, cpuPlayerObj) {
+function insertShipRandomCoords(ship, targetPlayerObject) {
   while (true) {
     let xCoord = genXCoord();
     let yCoord = genYCoord();
     let direction = genDirection();
 
     if (
-      cpuPlayerObj.compoundValidation(ship.length, yCoord, xCoord, direction) !=
+      targetPlayerObject.compoundValidation(ship.length, yCoord, xCoord, direction) !=
       false
     ) {
-      return cpuPlayerObj.placeShip(ship, yCoord, xCoord, direction);
+      return targetPlayerObject.placeShip(ship, yCoord, xCoord, direction);
     }
   }
 }
-export { genDirection, newPlayer, genXCoord, genYCoord, insertCPUship };
+export { genDirection, newPlayer, genXCoord, genYCoord, insertShipRandomCoords };
